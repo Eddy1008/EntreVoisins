@@ -79,6 +79,7 @@ public class AddNeighbourActivity extends AppCompatActivity {
 
     }
 
+    // Modif Eddy 01/11 ajout isFavorite false
     @OnClick(R.id.create)
     void addNeighbour() {
         Neighbour neighbour = new Neighbour(
@@ -87,7 +88,8 @@ public class AddNeighbourActivity extends AppCompatActivity {
                 mNeighbourImage,
                 addressInput.getEditText().getText().toString(),
                 phoneInput.getEditText().getText().toString(),
-                aboutMeInput.getEditText().getText().toString()
+                aboutMeInput.getEditText().getText().toString(),
+                false
         );
         mApiService.createNeighbour(neighbour);
         finish();

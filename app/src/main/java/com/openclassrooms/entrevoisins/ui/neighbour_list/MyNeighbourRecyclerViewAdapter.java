@@ -67,7 +67,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 view.getContext().startActivity(intent);
             }
         });
-        // Fin ajout Eddy 20/10
+        // Fin ajout Eddy 01/11
 
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
