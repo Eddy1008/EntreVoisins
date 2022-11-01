@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#C8C8C8"
+    tools:context=".ui.neighbour_list.NeighbourDetailActivity">
+
+    <ImageView
+        android:id="@+id/neighbour_detail_photo"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@android:color/black"
+        android:textColor="@android:color/white"
+        android:textSize="32sp"
+        android:gravity="bottom"
+        android:paddingStart="12dp"
+        android:paddingBottom="24dp"
+        tools:text="Neighbour Name"
+
+        />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/neighbour_detail_photo">
+
+        <LinearLayout
+            android:id="@+id/linear1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/textview_neighbour_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:gravity="center_vertical"
+                android:textSize="24sp"
+                android:textColor="@android:color/black"
+                tools:text="Neighbour Name" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/image_address"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_margin="12dp"
+                    app:srcCompat="@android:drawable/ic_dialog_map" />
+
+                <TextView
+                    android:id="@+id/textview_address"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_address"
+                    app:layout_constraintStart_toEndOf="@+id/image_address"
+                    app:layout_constraintTop_toTopOf="@+id/image_address"
+                    android:layout_marginStart="12dp"
+                    tools:text="Neighbour's address is here!" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/image_phone_number"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_margin="12dp"
+                    app:srcCompat="@android:drawable/ic_menu_call" />
+
+                <TextView
+                    android:id="@+id/textview_phone_number"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_phone_number"
+                    app:layout_constraintStart_toEndOf="@+id/image_phone_number"
+                    app:layout_constraintTop_toTopOf="@+id/image_phone_number"
+                    android:layout_marginStart="12dp"
+                    tools:text="Neighbour's Phone number" />
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/image_facebook_link"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_margin="12dp"
+                    app:srcCompat="@android:drawable/ic_menu_mapmode" />
+
+                <TextView
+                    android:id="@+id/textview_facebook_link"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/image_facebook_link"
+                    app:layout_constraintStart_toEndOf="@+id/image_facebook_link"
+                    app:layout_constraintTop_toTopOf="@+id/image_facebook_link"
+                    android:layout_marginStart="12dp"
+                    tools:text="Neighbour's Facebook Link" />
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="4dp"
+        android:layout_margin="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_view1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewName">
+
+            <TextView
+                android:id="@+id/textViewAboutMe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textSize="24sp"
+                android:textColor="@android:color/black"
+                android:layout_margin="12dp"
+                tools:text="A propos de moi"/>
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/textViewAboutMeInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="All you need to know about your neighbour is here !!"
+                android:textSize="16sp"
+                android:layout_margin="12dp"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_add_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="@+id/card_view1"
+        app:layout_constraintEnd_toEndOf="@+id/card_view1"
+        app:layout_constraintTop_toTopOf="@+id/neighbour_detail_photo"
+        app:srcCompat="@drawable/ic_star_white_24dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/button_previous_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="@+id/neighbour_detail_photo"
+        app:layout_constraintTop_toTopOf="@+id/neighbour_detail_photo"
+        android:src="?attr/actionModeCloseDrawable" />
+
+</android.support.constraint.ConstraintLayout>
