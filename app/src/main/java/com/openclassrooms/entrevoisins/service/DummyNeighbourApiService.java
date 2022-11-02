@@ -1,5 +1,7 @@
 package com.openclassrooms.entrevoisins.service;
 
+import android.util.Log;
+
 import com.openclassrooms.entrevoisins.model.Neighbour;
 
 import java.util.List;
@@ -35,5 +37,12 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     @Override
     public void createNeighbour(Neighbour neighbour) {
         neighbours.add(neighbour);
+    }
+
+    // Eddy 02/11 update neighbour with isFavorite
+    @Override
+    public void updateNeighbour(Neighbour neighbour) {
+        int indexNeighbour = neighbours.indexOf(neighbour);
+        neighbours.set(indexNeighbour, neighbour);
     }
 }

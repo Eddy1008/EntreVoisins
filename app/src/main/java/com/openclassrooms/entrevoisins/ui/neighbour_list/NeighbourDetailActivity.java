@@ -18,7 +18,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
+import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
+import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,7 +46,8 @@ public class NeighbourDetailActivity extends AppCompatActivity {
     @BindView(R.id.button_add_favorite)
     FloatingActionButton addFavoriteButton;
 
-    Neighbour neighbour;
+    private Neighbour neighbour;
+    private NeighbourApiService mApiService;
 
 
     @Override
@@ -53,24 +56,18 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_neighbour_detail);
         ButterKnife.bind(this);
 
+        mApiService = DI.getNeighbourApiService();
+
         mTextViewAboutMe.setText("A Propos de moi :");
         // On recupere l'intent:
         Intent intent = getIntent();
 
         // On recupere le Bundle transmis via l'intent:
         Bundle myBundle = intent.getBundleExtra("BUNDLE_NEIGHBOUR_CLICKED");
-        // Verifie que l'object Neighbour est récupéré:
-        Log.d("NeighBourDetailActivity", " NeighbourObject recu: " + myBundle.get("NEIGHBOUR_OBJECT"));
 
-        // NE FONCTIONNE PAS
-        //Neighbour neighbour = (Neighbour) intent.getSerializableExtra("NEIGHBOUR_OBJECT");
-        //Log.d("NeighBourDetailActivity", " NeighbourObject recu: " + neighbour);
-
-        Log.d("NeighBourDetailActivity", " NeighbourObject recu: " + myBundle.get("NEIGHBOUR_OBJECT"));
-
+        // Crée l'objet Neighbour récupérer dans le bundle:
         neighbour = (Neighbour) myBundle.get("NEIGHBOUR_OBJECT");
-        Log.d("NeighBourDetailActivity", " NeighbourObject recu: " + neighbour.getName());
-
+        // Affiche les données:
         mTextviewNeighbourName.setText(neighbour.getName());
         mTextviewAddress.setText(neighbour.getAddress());
         mTextviewPhoneNumber.setText(neighbour.getPhoneNumber());
@@ -80,6 +77,7 @@ public class NeighbourDetailActivity extends AppCompatActivity {
                 .load(neighbour.getAvatarUrl())
                 .into(mNeighbourDetailPhoto);
 
+        // Definir l'apparence du bouton favori selon isFavorite
         if(neighbour.isFavorite()) {
             //Definir apparence du bouton ajouter aux favoris
             addFavoriteButton.setImageResource(R.drawable.ic_baseline_star_is_favorite_true);
@@ -89,8 +87,6 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         }
     }
 
-
-
     @OnClick(R.id.button_previous_page)
     void previousPage() {
         ListNeighbourActivity.navigate(this);
@@ -98,15 +94,14 @@ public class NeighbourDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.button_add_favorite)
     void addToFavoriteList() {
-        if (neighbour.isFavorite() == true) {
+        if (neighbour.isFavorite()) {
             neighbour.setFavorite(false);
-            Log.d("NeighbourDetailActivity", "bouton ajout favori true devient false : " + neighbour.isFavorite());
             addFavoriteButton.setImageResource(R.drawable.ic_baseline_star_is_favorite_false);
         } else {
             neighbour.setFavorite(true);
-            Log.d("NeighbourDetailActivity", "bouton ajout favori false devient true : " + neighbour.isFavorite());
             addFavoriteButton.setImageResource(R.drawable.ic_baseline_star_is_favorite_true);
         }
+        // sauvegarde des modifications (de l'attribut isFavorite)
+        mApiService.updateNeighbour(neighbour);
     }
-
 }
