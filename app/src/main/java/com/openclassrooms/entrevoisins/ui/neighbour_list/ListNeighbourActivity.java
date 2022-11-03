@@ -34,9 +34,17 @@ public class ListNeighbourActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_neighbour);
         ButterKnife.bind(this);
 
-        setSupportActionBar(mToolbar);
+        // Eddy 03/11
+        mTabLayout.setupWithViewPager(mViewPager);
         mPagerAdapter = new ListNeighbourPagerAdapter(getSupportFragmentManager());
+        mPagerAdapter.addFragment(new NeighbourFragment(), "My Neighbours");
+        mPagerAdapter.addFragment(new FavoriteNeighbourFragment(), "Favorites");
         mViewPager.setAdapter(mPagerAdapter);
+        // fin
+
+        setSupportActionBar(mToolbar);
+        //mPagerAdapter = new ListNeighbourPagerAdapter(getSupportFragmentManager());
+        //mViewPager.setAdapter(mPagerAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
