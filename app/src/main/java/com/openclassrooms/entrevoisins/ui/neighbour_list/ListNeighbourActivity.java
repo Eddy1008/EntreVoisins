@@ -59,10 +59,11 @@ public class ListNeighbourActivity extends AppCompatActivity {
     /**
      * Used to navigate to this activity
      * @param activity
-     */
+
     public static void navigate(FragmentActivity activity) {
         Intent intent = new Intent(activity, ListNeighbourActivity.class);
         ActivityCompat.startActivity(activity, intent, null);
     }
+     */
     // Fin ajout 13/10
 }

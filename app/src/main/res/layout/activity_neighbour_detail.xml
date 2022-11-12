@@ -20,8 +20,6 @@
         android:textColor="@android:color/white"
         android:textSize="32sp"
         android:gravity="bottom"
-        android:paddingStart="12dp"
-        android:paddingBottom="24dp"
         tools:text="Neighbour Name"
 
         />
@@ -73,7 +71,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_margin="12dp"
-                    app:srcCompat="@android:drawable/ic_dialog_map" />
+                    app:srcCompat="@drawable/ic_baseline_location_on_24" />
 
                 <TextView
                     android:id="@+id/textview_address"
@@ -98,7 +96,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_margin="12dp"
-                    app:srcCompat="@android:drawable/ic_menu_call" />
+                    app:srcCompat="@drawable/ic_baseline_phone_24" />
 
                 <TextView
                     android:id="@+id/textview_phone_number"
@@ -123,7 +121,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_margin="12dp"
-                    app:srcCompat="@android:drawable/ic_menu_mapmode" />
+                    app:srcCompat="@drawable/ic_baseline_language_24" />
 
                 <TextView
                     android:id="@+id/textview_facebook_link"
@@ -207,6 +205,6 @@
         android:clickable="true"
         app:layout_constraintStart_toStartOf="@+id/neighbour_detail_photo"
         app:layout_constraintTop_toTopOf="@+id/neighbour_detail_photo"
-        android:src="?attr/actionModeCloseDrawable" />
+        android:src="@drawable/ic_baseline_arrow_back_24" />
 
 </android.support.constraint.ConstraintLayout>

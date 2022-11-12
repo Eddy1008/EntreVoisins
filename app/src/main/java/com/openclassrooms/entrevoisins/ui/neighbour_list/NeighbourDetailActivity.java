@@ -22,6 +22,8 @@ import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
+import java.lang.annotation.Target;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -75,6 +77,7 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         mTextviewAboutMeInfo.setText(neighbour.getAboutMe());
         Glide.with(NeighbourDetailActivity.this)
                 .load(neighbour.getAvatarUrl())
+                .centerCrop()
                 .into(mNeighbourDetailPhoto);
 
         // Definir l'apparence du bouton favori selon isFavorite
@@ -89,7 +92,8 @@ public class NeighbourDetailActivity extends AppCompatActivity {
 
     @OnClick(R.id.button_previous_page)
     void previousPage() {
-        ListNeighbourActivity.navigate(this);
+        //ListNeighbourActivity.navigate(this);
+        finish();
     }
 
     @OnClick(R.id.button_add_favorite)
