@@ -48,26 +48,16 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 .apply(RequestOptions.circleCropTransform())
                 .into(holder.mNeighbourAvatar);
 
-        // Ajout Eddy 20/10
         holder.mNeighbourAvatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("LISTNEIGHBOURACTIVITY", "onClick: Clic sur le portrait de : " + neighbour.getName() + " photo : " + neighbour.getAvatarUrl());
                 Intent intent = new Intent(view.getContext(), NeighbourDetailActivity.class);
                 Bundle myBundle = new Bundle();
                 myBundle.putSerializable("NEIGHBOUR_OBJECT", neighbour);
-                //myBundle.putString("NEIGHBOUR_PHOTO_URL", neighbour.getAvatarUrl());
-                //myBundle.putString("NEIGHBOUR_NAME", neighbour.getName());
-                //myBundle.putString("NEIGHBOUR_ADDRESS", neighbour.getAddress());
-                //myBundle.putString("NEIGHBOUR_PHONE", neighbour.getPhoneNumber());
-                //myBundle.putString("NEIGHBOUR_FACEBOOK", neighbour.getName());
-                //myBundle.putString("NEIGHBOUR_DESCRIPTION", neighbour.getAboutMe());
-
                 intent.putExtra("BUNDLE_NEIGHBOUR_CLICKED", myBundle);
                 view.getContext().startActivity(intent);
             }
         });
-        // Fin ajout Eddy 20/10
 
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override

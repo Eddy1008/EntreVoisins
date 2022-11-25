@@ -34,9 +34,13 @@ public class ListNeighbourActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_neighbour);
         ButterKnife.bind(this);
 
-        setSupportActionBar(mToolbar);
+        mTabLayout.setupWithViewPager(mViewPager);
         mPagerAdapter = new ListNeighbourPagerAdapter(getSupportFragmentManager());
+        mPagerAdapter.addFragment(new NeighbourFragment(), "My Neighbours");
+        mPagerAdapter.addFragment(new FavoriteNeighbourFragment(), "Favorites");
         mViewPager.setAdapter(mPagerAdapter);
+
+        setSupportActionBar(mToolbar);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
         mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
@@ -47,14 +51,4 @@ public class ListNeighbourActivity extends AppCompatActivity {
         AddNeighbourActivity.navigate(this);
     }
 
-    // Ajout EDDY 13/10
-    /**
-     * Used to navigate to this activity
-     * @param activity
-     */
-    public static void navigate(FragmentActivity activity) {
-        Intent intent = new Intent(activity, ListNeighbourActivity.class);
-        ActivityCompat.startActivity(activity, intent, null);
-    }
-    // Fin ajout 13/10
 }
