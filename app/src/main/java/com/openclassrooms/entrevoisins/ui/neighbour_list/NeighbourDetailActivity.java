@@ -59,42 +59,13 @@ public class NeighbourDetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mApiService = DI.getNeighbourApiService();
-
         mTextViewAboutMe.setText("A Propos de moi :");
-        // On recupere l'intent:
-        Intent intent = getIntent();
 
-        // On recupere le Bundle transmis via l'intent:
-        Bundle myBundle = intent.getBundleExtra("BUNDLE_NEIGHBOUR_CLICKED");
-
-        // Crée l'objet Neighbour récupérer dans le bundle:
-        neighbour = (Neighbour) myBundle.get("NEIGHBOUR_OBJECT");
-        // Affiche les données:
-        mTextviewNeighbourName.setText(neighbour.getName());
-        mTextviewAddress.setText(neighbour.getAddress());
-        mTextviewPhoneNumber.setText(neighbour.getPhoneNumber());
-        mTextviewFacebookLink.setText(neighbour.getName());
-        mTextviewAboutMeInfo.setText(neighbour.getAboutMe());
-        Glide.with(NeighbourDetailActivity.this)
-                .load(neighbour.getAvatarUrl())
-                .centerCrop()
-                .into(mNeighbourDetailPhoto);
-
-        // Definir l'apparence du bouton favori selon isFavorite
-        if(neighbour.isFavorite()) {
-            //Definir apparence du bouton ajouter aux favoris
-            addFavoriteButton.setImageResource(R.drawable.ic_baseline_star_is_favorite_true);
-        } else {
-            //Definir apparence du bouton ajouter aux favoris
-            addFavoriteButton.setImageResource(R.drawable.ic_baseline_star_is_favorite_false);
-        }
+        getNeighbourDataFromBundle();
     }
 
     @OnClick(R.id.button_previous_page)
-    void previousPage() {
-        //ListNeighbourActivity.navigate(this);
-        finish();
-    }
+    void previousPage() { finish(); }
 
     @OnClick(R.id.button_add_favorite)
     void addToFavoriteList() {
@@ -105,7 +76,33 @@ public class NeighbourDetailActivity extends AppCompatActivity {
             neighbour.setFavorite(true);
             addFavoriteButton.setImageResource(R.drawable.ic_baseline_star_is_favorite_true);
         }
-        // sauvegarde des modifications (de l'attribut isFavorite)
         mApiService.updateNeighbour(neighbour);
+    }
+
+    void setAddFavoriteButtonAppearance() {
+        if(neighbour.isFavorite()) {
+            addFavoriteButton.setImageResource(R.drawable.ic_baseline_star_is_favorite_true);
+        } else {
+            addFavoriteButton.setImageResource(R.drawable.ic_baseline_star_is_favorite_false);
+        }
+    }
+
+    void getNeighbourDataFromBundle() {
+        Intent intent = getIntent();
+        Bundle myBundle = intent.getBundleExtra("BUNDLE_NEIGHBOUR_CLICKED");
+
+        neighbour = (Neighbour) myBundle.get("NEIGHBOUR_OBJECT");
+
+        mTextviewNeighbourName.setText(neighbour.getName());
+        mTextviewAddress.setText(neighbour.getAddress());
+        mTextviewPhoneNumber.setText(neighbour.getPhoneNumber());
+        mTextviewFacebookLink.setText(neighbour.getName());
+        mTextviewAboutMeInfo.setText(neighbour.getAboutMe());
+        Glide.with(NeighbourDetailActivity.this)
+                .load(neighbour.getAvatarUrl())
+                .centerCrop()
+                .into(mNeighbourDetailPhoto);
+
+        setAddFavoriteButtonAppearance();
     }
 }

@@ -11,6 +11,7 @@ import org.junit.runners.JUnit4;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
@@ -39,5 +40,45 @@ public class NeighbourServiceTest {
         Neighbour neighbourToDelete = service.getNeighbours().get(0);
         service.deleteNeighbour(neighbourToDelete);
         assertFalse(service.getNeighbours().contains(neighbourToDelete));
+    }
+
+    @Test
+    public void createNeighbourWithSuccess() {
+        service.getNeighbours().clear();
+        Neighbour neighbour1 = new Neighbour(
+                13,
+                "Eddy",
+                "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+                "Saint-Pierre-du-Mont ; 5km",
+                "+33 6 86 57 90 14",
+                "Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot..",
+                false);
+        service.createNeighbour(neighbour1);
+        assertEquals(1, service.getNeighbours().size());
+    }
+
+    @Test
+    public void updateNeighbourWithSuccess() {
+        Neighbour neighbourToUpdate = service.getNeighbours().get(0);
+        assertFalse("Updated name".equals(service.getNeighbours().get(0).getName()));
+        neighbourToUpdate.setName("Updated name");
+        service.updateNeighbour(neighbourToUpdate);
+        assertEquals("Updated name", service.getNeighbours().get(0).getName());
+    }
+
+    @Test
+    public void getFavoritesNeighboursWithSuccess() {
+        assertEquals(0, service.getFavoritesNeighbours().size());
+        Neighbour neighbourToAddToFavoriteList = new Neighbour(
+                14,
+                "Harry Potter",
+                "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+                "Saint-Pierre-du-Mont ; 5km",
+                "+33 6 86 57 90 14",
+                "Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot..",
+                true);
+        service.createNeighbour(neighbourToAddToFavoriteList);
+        List<Neighbour> favoritesNeighbours = service.getFavoritesNeighbours();
+        assertEquals(1, favoritesNeighbours.size());
     }
 }

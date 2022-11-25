@@ -46,7 +46,9 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
         neighbours.set(indexNeighbour, neighbour);
     }
 
-    // Eddy 03/11 Create a list with Neighbour isFavorite true
+    /**
+     * create and return a list of neighbours with isFavorite = true
+     */
     @Override
     public List<Neighbour> getFavoritesNeighbours() {
         List<Neighbour> favoriteNeighbours = new ArrayList<>();

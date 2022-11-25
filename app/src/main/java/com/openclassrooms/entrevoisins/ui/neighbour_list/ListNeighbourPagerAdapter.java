@@ -10,10 +10,8 @@ import java.util.ArrayList;
 
 public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
 
-    // Eddy 03/11
     private final ArrayList<Fragment> mFragmentArrayList = new ArrayList<>();
     private final ArrayList<String> fragmentTitle = new ArrayList<>();
-    // fin
 
     public ListNeighbourPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -27,7 +25,6 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         return mFragmentArrayList.get(position);
-        //return NeighbourFragment.newInstance();
     }
 
     /**
