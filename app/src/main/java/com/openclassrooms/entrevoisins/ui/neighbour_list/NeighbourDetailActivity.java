@@ -33,6 +33,8 @@ public class NeighbourDetailActivity extends AppCompatActivity {
     // UI Components
     @BindView(R.id.neighbour_detail_photo)
     ImageView mNeighbourDetailPhoto;
+    @BindView(R.id.textview_neighbour_name_portrait)
+    TextView mTextViewPortraitName;
     @BindView(R.id.textview_neighbour_name)
     TextView mTextviewNeighbourName;
     @BindView(R.id.textview_address)
@@ -90,13 +92,14 @@ public class NeighbourDetailActivity extends AppCompatActivity {
     void getNeighbourDataFromBundle() {
         Intent intent = getIntent();
         Bundle myBundle = intent.getBundleExtra("BUNDLE_NEIGHBOUR_CLICKED");
-
         neighbour = (Neighbour) myBundle.get("NEIGHBOUR_OBJECT");
 
+        String facebookLink = "www.facebook.fr/" + neighbour.getName();
+        mTextViewPortraitName.setText(neighbour.getName());
         mTextviewNeighbourName.setText(neighbour.getName());
         mTextviewAddress.setText(neighbour.getAddress());
         mTextviewPhoneNumber.setText(neighbour.getPhoneNumber());
-        mTextviewFacebookLink.setText(neighbour.getName());
+        mTextviewFacebookLink.setText(facebookLink);
         mTextviewAboutMeInfo.setText(neighbour.getAboutMe());
         Glide.with(NeighbourDetailActivity.this)
                 .load(neighbour.getAvatarUrl())
