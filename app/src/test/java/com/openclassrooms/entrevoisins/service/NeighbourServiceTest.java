@@ -78,6 +78,15 @@ public class NeighbourServiceTest {
                 "Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot..",
                 true);
         service.createNeighbour(neighbourToAddToFavoriteList);
+        Neighbour neighbourToNotAddFavoriteList = new Neighbour(
+                15,
+                "Draco Malfoy",
+                "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+                "Poudlard chambre commune des Serpentard",
+                "+33 6 86 57 90 14",
+                "Bonjour !Je souhaiterais faire de la marche nordique. Pas initiée, je recherche une ou plusieurs personnes susceptibles de m'accompagner !J'aime les jeux de cartes tels la belote et le tarot..",
+                false);
+        service.createNeighbour(neighbourToNotAddFavoriteList);
         List<Neighbour> favoritesNeighbours = service.getFavoritesNeighbours();
         assertEquals(1, favoritesNeighbours.size());
     }
