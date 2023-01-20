@@ -73,12 +73,11 @@ public class NeighbourDetailActivity extends AppCompatActivity {
     void addToFavoriteList() {
         if (neighbour.isFavorite()) {
             neighbour.setFavorite(false);
-            addFavoriteButton.setImageResource(R.drawable.ic_baseline_star_is_favorite_false);
         } else {
             neighbour.setFavorite(true);
-            addFavoriteButton.setImageResource(R.drawable.ic_baseline_star_is_favorite_true);
         }
         mApiService.updateNeighbour(neighbour);
+        setAddFavoriteButtonAppearance();
     }
 
     void setAddFavoriteButtonAppearance() {

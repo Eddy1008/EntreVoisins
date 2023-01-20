@@ -49,15 +49,28 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
                 .into(holder.mNeighbourAvatar);
 
         holder.mNeighbourAvatar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), NeighbourDetailActivity.class);
-                Bundle myBundle = new Bundle();
-                myBundle.putSerializable("NEIGHBOUR_OBJECT", neighbour);
-                intent.putExtra("BUNDLE_NEIGHBOUR_CLICKED", myBundle);
-                view.getContext().startActivity(intent);
-            }
-        });
+               @Override
+               public void onClick(View view) {
+                   Intent intent = new Intent(view.getContext(), NeighbourDetailActivity.class);
+                   Bundle myBundle = new Bundle();
+                   myBundle.putSerializable("NEIGHBOUR_OBJECT", neighbour);
+                   intent.putExtra("BUNDLE_NEIGHBOUR_CLICKED", myBundle);
+                   view.getContext().startActivity(intent);
+               }
+           }
+        );
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View view) {
+                       Intent intent = new Intent(view.getContext(), NeighbourDetailActivity.class);
+                       Bundle myBundle = new Bundle();
+                       myBundle.putSerializable("NEIGHBOUR_OBJECT", neighbour);
+                       intent.putExtra("BUNDLE_NEIGHBOUR_CLICKED", myBundle);
+                       view.getContext().startActivity(intent);
+                   }
+               }
+        );
 
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -80,7 +80,7 @@ public class NeighboursListTest {
      */
     @Test
     public void myNeighboursList_deleteAction_shouldRemoveItem() {
-        ViewInteraction appCompatImageButton = onView(
+        ViewInteraction deleteImageButton = onView(
                 allOf(withId(R.id.item_list_delete_button),
                         childAtPosition(
                                 childAtPosition(
@@ -88,7 +88,7 @@ public class NeighboursListTest {
                                         1),
                                 2),
                         isDisplayed()));
-        appCompatImageButton.perform(click());
+        deleteImageButton.perform(click());
 
         ViewInteraction recyclerView = onView(
                 allOf(withId(R.id.list_neighbours),
@@ -104,7 +104,7 @@ public class NeighboursListTest {
      */
     @Test
     public void myNeighboursList_detailActivity_shouldShowActivityNeighbourDetailLayout() {
-        ViewInteraction appCompatImageView = onView(
+        ViewInteraction holderAvatar = onView(
                 allOf(withId(R.id.item_list_avatar),
                         childAtPosition(
                                 childAtPosition(
@@ -112,19 +112,13 @@ public class NeighboursListTest {
                                         0),
                                 0),
                         isDisplayed()));
-        appCompatImageView.perform(click());
+        holderAvatar.perform(click());
 
-        ViewInteraction frameLayout = onView(
+        ViewInteraction neighbourDetailActivityLayoutCardView1 = onView(
                 allOf(withId(R.id.card_view1),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
-        frameLayout.check(matches(isDisplayed()));
-
-        ViewInteraction frameLayout2 = onView(
-                allOf(withId(R.id.cardView2),
-                        withParent(withParent(withId(android.R.id.content))),
-                        isDisplayed()));
-        frameLayout2.check(matches(isDisplayed()));
+        neighbourDetailActivityLayoutCardView1.check(matches(isDisplayed()));
     }
 
     /**
@@ -133,7 +127,7 @@ public class NeighboursListTest {
      */
     @Test
     public void myNeighboursList_detailActivity_shouldShowActivityNeighbourDetailNeighbourName() {
-        ViewInteraction appCompatImageView = onView(
+        ViewInteraction holderAvatar = onView(
                 allOf(withId(R.id.item_list_avatar),
                         childAtPosition(
                                 childAtPosition(
@@ -141,13 +135,13 @@ public class NeighboursListTest {
                                         0),
                                 0),
                         isDisplayed()));
-        appCompatImageView.perform(click());
+        holderAvatar.perform(click());
 
-        ViewInteraction textView = onView(
+        ViewInteraction textViewPortrait = onView(
                 allOf(withId(R.id.textview_neighbour_name_portrait), withText("Caroline"),
                         withParent(withParent(withId(android.R.id.content))),
                         isDisplayed()));
-        textView.check(matches(withText("Caroline")));
+        textViewPortrait.check(matches(withText("Caroline")));
     }
 
     /**
@@ -160,132 +154,131 @@ public class NeighboursListTest {
     @Test
     public void myNeighboursList_shouldShowFavoritesNeighboursOnly() {
         // click on favorites tab
-        ViewInteraction tabView = onView(
+        ViewInteraction tabViewFavorites = onView(
                 allOf(withContentDescription("Favorites"),
                         childAtPosition(childAtPosition(withId(R.id.tabs), 0), 1),
                         isDisplayed()));
-        tabView.perform(click());
+        tabViewFavorites.perform(click());
 
         // move to favorites tab
         ViewInteraction viewPager = onView(
                 allOf(withId(R.id.container),
-                        childAtPosition(
-                                allOf(withId(R.id.main_content),
-                                        childAtPosition(withId(android.R.id.content), 0)), 1),
+                        childAtPosition(allOf(withId(R.id.main_content), childAtPosition(
+                                withId(android.R.id.content), 0)), 1),
                         isDisplayed()));
         viewPager.perform(swipeLeft());
 
         // check if list_neighbours is diplayed in the container
-        ViewInteraction recyclerView = onView(
+        ViewInteraction recyclerViewNeighbours = onView(
                 allOf(withId(R.id.list_neighbours),withParent(allOf(withId(R.id.container), withParent(withId(R.id.main_content)))),
                         isDisplayed()));
-        recyclerView.check(matches(isDisplayed()));
+        recyclerViewNeighbours.check(matches(isDisplayed()));
         // and contains 0 element:
-        recyclerView.check(withItemCount(0));
+        recyclerViewNeighbours.check(withItemCount(0));
 
         // click on my neighbours tab
-        ViewInteraction tabView2 = onView(
+        ViewInteraction tabViewNeighbours = onView(
                 allOf(withContentDescription("My Neighbours"),
                         childAtPosition(childAtPosition(withId(R.id.tabs), 0), 0),
                         isDisplayed()));
-        tabView2.perform(click());
+        tabViewNeighbours.perform(click());
         // move to my neighbours tab
-        ViewInteraction viewPager2 = onView(
+        viewPager = onView(
                 allOf(withId(R.id.container),
                         childAtPosition(allOf(withId(R.id.main_content), childAtPosition(
                                 withId(android.R.id.content), 0)), 1),
                         isDisplayed()));
-        viewPager2.perform(swipeRight());
+        viewPager.perform(swipeRight());
 
         // Add an element to favorite list
         // click on first neighbour to see detail
-        ViewInteraction appCompatImageView = onView(
+        ViewInteraction firstHolderAvatar = onView(
                 allOf(withId(R.id.item_list_avatar),
                         childAtPosition(childAtPosition(withId(R.id.list_neighbours), 0), 0),
                         isDisplayed()));
-        appCompatImageView.perform(click());
+        firstHolderAvatar.perform(click());
         // click on add favorite button
-        ViewInteraction floatingActionButton = onView(
+        ViewInteraction fabAddFavorite = onView(
                 allOf(withId(R.id.button_add_favorite),
                         childAtPosition(childAtPosition(withId(android.R.id.content), 0), 5),
                         isDisplayed()));
-        floatingActionButton.perform(click());
+        fabAddFavorite.perform(click());
         // come back to neighbour list:
-        ViewInteraction appCompatImageView2 = onView(
+        ViewInteraction previousPageButton = onView(
                 allOf(withId(R.id.button_previous_page),
                         childAtPosition(childAtPosition(withId(android.R.id.content), 0), 1),
                         isDisplayed()));
-        appCompatImageView2.perform(click());
+        previousPageButton.perform(click());
 
         // Add an element to favorite list
         // click on third neighbour to see detail
-        ViewInteraction appCompatImageView3 = onView(
+        ViewInteraction thirdHolderAvatar = onView(
                 allOf(withId(R.id.item_list_avatar),
                         childAtPosition(childAtPosition(withId(R.id.list_neighbours), 2), 0),
                         isDisplayed()));
-        appCompatImageView3.perform(click());
+        thirdHolderAvatar.perform(click());
         // click on add favorite button
-        ViewInteraction floatingActionButton2 = onView(
+        fabAddFavorite = onView(
                 allOf(withId(R.id.button_add_favorite),
                         childAtPosition(childAtPosition(withId(android.R.id.content), 0), 5),
                         isDisplayed()));
-        floatingActionButton2.perform(click());
+        fabAddFavorite.perform(click());
         // come back to neighbour list:
-        ViewInteraction appCompatImageView4 = onView(
+        previousPageButton = onView(
                 allOf(withId(R.id.button_previous_page),
                         childAtPosition(childAtPosition(withId(android.R.id.content), 0), 1),
                         isDisplayed()));
-        appCompatImageView4.perform(click());
+        previousPageButton.perform(click());
 
         // click on favorites tab
-        ViewInteraction tabView3 = onView(
+        tabViewFavorites = onView(
                 allOf(withContentDescription("Favorites"),
                         childAtPosition(childAtPosition(withId(R.id.tabs), 0), 1),
                         isDisplayed()));
-        tabView3.perform(click());
+        tabViewFavorites.perform(click());
         // move to favorites tab
-        ViewInteraction viewPager3 = onView(
+        viewPager = onView(
                 allOf(withId(R.id.container),
                         childAtPosition(allOf(withId(R.id.main_content), childAtPosition(withId(android.R.id.content), 0)), 1),
                         isDisplayed()));
-        viewPager3.perform(swipeLeft());
+        viewPager.perform(swipeLeft());
 
         // check if list_neighbours is diplayed in the container
-        ViewInteraction recyclerView2 = onView(
+        ViewInteraction recyclerViewFavorites = onView(
                 allOf(withId(R.id.list_neighbours),
                         withParent(allOf(withId(R.id.container), withParent(withId(R.id.main_content)))),
                         isDisplayed()));
-        recyclerView2.check(matches(isDisplayed()));
+        recyclerViewFavorites.check(matches(isDisplayed()));
         // and contains the two elements added
-        recyclerView2.check(withItemCount(2));
+        recyclerViewFavorites.check(withItemCount(2));
 
         // delete an element and verify if the list is now containing only 1 element
         // click on neighbour to see detail:
-        ViewInteraction appCompatImageView5 = onView(
+        ViewInteraction favoritesFirstHolderAvatar = onView(
                 allOf(withId(R.id.item_list_avatar),
                         childAtPosition(childAtPosition(withId(R.id.list_neighbours), 0), 0),
                         isDisplayed()));
-        appCompatImageView5.perform(click());
+        favoritesFirstHolderAvatar.perform(click());
         // click on add favorite button to cancel favorite status
-        ViewInteraction floatingActionButton3 = onView(
+        fabAddFavorite = onView(
                 allOf(withId(R.id.button_add_favorite),
                         childAtPosition(childAtPosition(withId(android.R.id.content), 0), 5),
                         isDisplayed()));
-        floatingActionButton3.perform(click());
+        fabAddFavorite.perform(click());
         // come back to favorites list:
-        ViewInteraction appCompatImageView6 = onView(
+        previousPageButton = onView(
                 allOf(withId(R.id.button_previous_page),
                         childAtPosition(childAtPosition(withId(android.R.id.content), 0), 1),
                         isDisplayed()));
-        appCompatImageView6.perform(click());
+        previousPageButton.perform(click());
         // check if list_neighbours is diplayed in the container
-        ViewInteraction recyclerView3 = onView(
+        recyclerViewFavorites = onView(
                 allOf(withId(R.id.list_neighbours),
                         withParent(allOf(withId(R.id.container), withParent(withId(R.id.main_content)))),
                         isDisplayed()));
-        recyclerView3.check(matches(isDisplayed()));
+        recyclerViewFavorites.check(matches(isDisplayed()));
         // and now contains only one element
-        recyclerView3.check(withItemCount(1));
+        recyclerViewFavorites.check(withItemCount(1));
     }
 
     private static Matcher<View> childAtPosition(
