@@ -8,7 +8,7 @@ Pour récupérer le projet:
 3. **Extraire** le projet du dossier Zip téléchargé.
 
 Pour ouvrir le ouvrir le projet:
-1. Ouvrir **Visual Studio**.
+1. Ouvrir **Android Studio**.
 2. Cliquer sur le menu "**Fichier**", "**Open**" et sélectionner le dossier du projet.
 
 Pour éxécuter le projet:
